@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Myapp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+        <title>Food App</title>
+    </head>
+    <body ng-controller="Mycontroller">
+        <form ng-submit="addFood()">
+            <label for="foodName">Food Name:</label>
+        <input type="text" id="foodName" ng-model="newFood.name"><br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" ng-model="newFood.price"><br>
+        <label for="des">DEscription</label>
+        <input type="text" id="des" ng-model="newFood.des"><br>
+        <button type="submit">Add</button>
+        </form>
+        <h3>Search Food</h3>
+        <input type="text" ng-model="searchQuery">
+         <table>
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="food in foods | filter:searchQuery">
+                    <td>{{ food.name }}</td>
+                    <td>{{ food.price }}</td>
+                    <td>{{ food.des }}</td>
+                    <td>
+                        <button ng-click="deleteFood(food._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
